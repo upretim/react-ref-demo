@@ -3,9 +3,34 @@ import './App.css';
 
 /*https://www.youtube.com/watch?v=tiytyGEodl0 */
 
+const MyInput = (props)=>{
+  return(
+    <input type='text'
+    ref={props.inputRef}/>
+  )
+}
+
+const FuncCustomComponent = (props)=>{
+  let inputRef = null;
+  const subClicked = (event)=>{
+    inputRef.focus();
+  }
+ 
+  return(
+    <div>   
+        <span>My Input</span>
+        <MyInput inputRef={(input)=>{
+        inputRef= input;
+    }}/>
+        <input type="submit"
+                value="submit"
+                onClick={subClicked}/>
+
+    </div>
+  )
+}
+
 class App  extends Component {
-
-
   render (){
     this.handleSubmit = (event)=>{
       console.log('First name is ', this.firstName.value);
@@ -33,6 +58,7 @@ class App  extends Component {
 
     return (
       <div className="container">
+        <FuncCustomComponent/>
         <div><span className="form-label">First Name: </span>
         <input type="text" placeholder="First Name"
         ref= {(input)=>{
